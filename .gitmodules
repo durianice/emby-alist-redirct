@@ -1,0 +1,4 @@
+[submodule "nginx_for_emby"]
+	path = nginx_for_emby
+	url = git@durianice:durianice/embyExternalUrl.git
+	branch = main

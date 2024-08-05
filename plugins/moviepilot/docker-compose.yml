@@ -1,0 +1,46 @@
+---
+services:
+
+  moviepilot:
+    stdin_open: true
+    tty: true
+    container_name: moviepilot
+    hostname: moviepilot
+    networks:
+      - moviepilot_network
+    ports:
+      - target: 3000
+        published: 3333
+        protocol: tcp
+    volumes:
+      - '/mnt:/mnt'
+      - '/pt/qbittorrent/downloads:/downloads'
+      - '/home/embygroup/moviepilot/config:/config'
+      - '/home/embygroup/moviepilot/core:/moviepilot/.cache/ms-playwright'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    environment:
+      - NGINX_PORT=3000
+      - PORT=3001
+      - PUID=0
+      - PGID=0
+      - UMASK=000
+      - TZ=Asia/Shanghai
+      - AUTH_SITE=${AUTH_SITE}
+      - ICC2022_UID=${ICC2022_UID}
+      - ICC2022_PASSKEY=${ICC2022_PASSKEY}
+      - SUPERUSER=admin
+      - API_TOKEN=${API_TOKEN}
+    restart: always
+    image: jxxghp/moviepilot:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2g
+      labels:
+        - "com.example.description=Moviepilot container"
+        - "com.example.version=latest"
+
+networks:
+  moviepilot_network:
+    driver: bridge
