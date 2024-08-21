@@ -13,7 +13,7 @@ services:
         published: 3333
         protocol: tcp
     volumes:
-      - '/mnt:/mnt'
+      - '/mnt:/mnt:shared'
       - '/pt/qbittorrent/downloads:/downloads'
       - '/home/embygroup/moviepilot/config:/config'
       - '/home/embygroup/moviepilot/core:/moviepilot/.cache/ms-playwright'
