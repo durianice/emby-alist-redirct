@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="./nginx_for_emby/emby2Alist/nginx"
-ENV_FILE=".env"
+ENV_FILE="/home/.env.emby_nginx"
 
 # 检查目录是否存在且不为空
 if [ ! -d "$DIR" ] || [ -z "$(ls -A "$DIR" 2>/dev/null)" ]; then
