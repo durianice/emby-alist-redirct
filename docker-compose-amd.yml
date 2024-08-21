@@ -62,3 +62,5 @@ services:
       - /home/embygroup/symlink:/app/config
     user: "0:0"
     network_mode: bridge
+    depends_on:
+      - clouddrive2
