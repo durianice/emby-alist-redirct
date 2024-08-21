@@ -42,7 +42,7 @@ services:
       - PGID=0
     volumes:
       - /home/embygroup/emby:/config
-      - /mnt:/mnt
+      - /mnt:/mnt:shared
     network_mode: bridge
 
   auto_symlink:
