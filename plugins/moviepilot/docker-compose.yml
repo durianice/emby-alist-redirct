@@ -32,14 +32,14 @@ services:
       - API_TOKEN=${API_TOKEN}
     restart: always
     image: jxxghp/moviepilot:latest
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 2g
-      labels:
-        - "com.example.description=Moviepilot container"
-        - "com.example.version=latest"
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '1.0'
+    #       memory: 2g
+    #   labels:
+    #     - "com.example.description=Moviepilot container"
+    #     - "com.example.version=latest"
 
 networks:
   moviepilot_network:
