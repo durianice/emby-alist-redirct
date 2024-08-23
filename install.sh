@@ -1,30 +1,20 @@
 #!/bin/bash
 
+cd /opt/
 git clone https://github.com/durianice/emby-alist-redirct.git
 cd emby-alist-redirct
-
-# 更新子模块的 URL 并初始化子模块
 git config --file=.gitmodules submodule.nginx_for_emby.url https://github.com/durianice/embyExternalUrl.git
 cd nginx_for_emby
 git submodule update --init --recursive
-
-ARCH=$(uname -m)
-
-# 返回主目录并启动 Docker Compose
 cd ..
 
+ARCH=$(uname -m)
 if [ "$ARCH" == "armv7l" ] || [ "$ARCH" == "armv8l" ] || [ "$ARCH" == "aarch64" ]; then
-    COMPOSE_FILE="docker-compose-arm.yml"
+    REPLACE_STRING="emby/embyserver_arm64v8"
 else
-    COMPOSE_FILE="docker-compose-amd.yml"
+    REPLACE_STRING="emby/embyserver"
 fi
+sed -i "s|EMBY_IMAGE_NAME|${REPLACE_STRING}|g" docker-compose.yml
 
-cp ${COMPOSE_FILE} docker-compose.yml
-
-docker compose up -d
-
-# 列出所有容器的名称和 IP 地址
-docker compose ps -q | xargs docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
-
-# 创建目录
-mkdir -p /mnt/strm115/ && chmod 777 /mnt
+echo "请修改 docker-compose.yml 文件中的环境变量，然后运行 docker compose up -d 启动容器"
+echo "查看容器内网IP: docker compose ps -q | xargs docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"

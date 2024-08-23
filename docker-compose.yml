@@ -32,21 +32,17 @@ services:
     network_mode: bridge
 
   embyserver:
-    image: amilys/embyserver
+    image: EMBY_IMAGE_NAME
     container_name: embygroup.embyserver
-    restart: always
+    restart: on-failure
     ports:
       - "8096:8096"
     environment:
-      - TZ=Asia/Shanghai
       - PUID=0
       - PGID=0
     volumes:
       - /home/embygroup/emby:/config
       - /mnt:/mnt:shared
-    depends_on:
-      - clouddrive2
-      - alist
     network_mode: bridge
 
   auto_symlink:
