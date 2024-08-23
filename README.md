@@ -8,7 +8,7 @@ bash setup.sh
 
 cp docker-compose-nginx-emby.yml ./nginx_workdir/docker-compose.yml 
 cd nginx_workdir
-docker compose -d
+docker compose up -d
 
 # open ip:port
 # view logs
