@@ -62,3 +62,5 @@ replace_vars "${NGINX_WORK_DIR}/nginx/conf.d/config/constant-mount.js" "请输�
 replace_vars "${NGINX_WORK_DIR}/nginx/conf.d/config/constant-mount.js" "请输入ALIST外网地址(http://xxxx:1234)" "{{ALIST_PUBLIC_ADDR}}" "ALIST_PUBLIC_ADDR"
 replace_vars "${NGINX_WORK_DIR}/nginx/conf.d/includes/http.conf" "请输入最终访问端口(8097)" "{{HTTP_PORT}}" "HTTP_PORT"
 replace_vars "${NGINX_WORK_DIR}/nginx/conf.d/includes/server-group.conf" "请输入EMBY内网IP:HOST(xxxx:1234)" "{{DOCKER_IP_HOST}}" "DOCKER_IP_HOST"
+
+echo "Nginx 配置文件已生成，路径 ${NGINX_ENV_FILE}"
